@@ -1,6 +1,8 @@
 /*
 Full Stack JavaScript Techdegree project 1 Random Quote Generator 
 Michael Cook
+
+I am aiming for "Exceeds Expectations" but if the code doesn't meet that standard then I will accept "Meets Expectations"
 */
 
 
