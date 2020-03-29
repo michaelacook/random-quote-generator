@@ -1,39 +1,32 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
+/*
+Full Stack JavaScript Techdegree project 1 Random Quote Generator 
+Michael Cook
+*/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
-/*** 
- * `quotes` array 
-***/
+// Array of quote objects 
 const quotes = [
   {
-    quote: "Workers of the world, unite!",
-    source: "Karl Marx",
-    citation: "Communist Manifesto",
-    year: "1848"
-  },
-  {
     quote: "Many of the works of sublime beauty are the precious fruit of mental agony; and we should be poor, indeed, if the willingness of man to suffer should disappear.",
-    source: "Franz Boas, anthropologist and physicist"
+    source: "Franz Boas, anthropologist and physicist",
+    tag: "Philosophical"
   },
   {
     quote: "Those heights by great men, won and kept, Were not achieved by sudden flight. But they, while their companions slept, Were toiling upward in the night.",
-    source: "Henry Wadsworth Longfellow"
+    source: "Henry Wadsworth Longfellow",
+    tag: "Inspirational"
   },
   {
     quote: "The test of our progress is not whether we add more to the abundance of those who have much; it is whether we provide enough for those who have too little.",
     source: "Franklin D. Roosevelt",
     citation: "Inaugural Address",
-    year: "1937"
+    year: "1937",
+    tag: "Political"
   },
   {
     quote: "Courage, my friends; 'tis not too late to build a better world.",
-    source: "Tommy Douglas"
+    source: "Tommy Douglas",
+    tag: "Political"
   },
   {
     quote: "In a time of deceit telling the truth is a revolutionary act.",
@@ -44,23 +37,51 @@ const quotes = [
     source: "Assata Shakur",
     citation: "Assata: An Autobiography",
     year: "1987"
+  },
+  {
+    quote: "A winner is a dreamer who never gives up.",
+    source: "Nelson Mandela",
+    tag: "Inspirational"
+  },
+  {
+    quote: "Beyond a wholesome discipline, be gentle with yourself. You are a child of the universe no less than the trees and the stars; you have a right to be here.",
+    source: "Max Ehrmann",
+    citation: "Desiderata",
+    year: "1927",
+    tag: "Wellness"
+  }, 
+  {
+    quote: "As long as I breathe I hope. As long as I breathe I shall fight for the future, that radiant future, in which man, strong and beautiful, will become master of the drifting stream of his history and will direct it towards the boundless horizons of beauty, joy and happiness!",
+    source: "Leon Trotsky",
+    citation: "On Optimism and Pessimism, on the Twentieth Century, and on Many Other Things",
+    year: "1901"
   }
 ];
 
 
 
-/***
- * `getRandomQuote` function
-***/
+/**
+ * Generates a random whole number between 0 and the total number of quotes in the array of quotes 
+ * Returns the random quote
+ */
 function getRandomQuote() {
   return quotes[Math.floor(Math.random() * quotes.length)];
 }
 
 
+/**
+ * Get a random colour and change the background to that colour
+ */
+function changeBackgroundColour() {
+  const colours = ['red', 'orange', '#3AC162', 'blue', 'purple', 'teal'];
+  document.querySelector('body').style.backgroundColor = colours[Math.floor(Math.random() * colours.length)];
+}
 
-/***
- * `printQuote` function
-***/
+
+
+/**
+ * Calls the getRandomQuote function, generates the html to display the quote and prints it to the page
+ */
 function printQuote() {
   const quote = getRandomQuote();
   let html = "<p class='quote'>" + quote.quote + "</p>" + "<p class='source'>" + quote.source;
@@ -69,6 +90,9 @@ function printQuote() {
   }
   if (quote.year) {
     html += "<span class='year'>" + quote.year + "</span>";
+  }
+  if (quote.tag) {
+    html += " <span> Tag: " + quote.tag + "</span>";
   }
   html += "</p>";
   document.getElementById('quote-box').innerHTML = html;
@@ -82,3 +106,16 @@ function printQuote() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", changeBackgroundColour, false);
+
+
+/**
+ * Every 20 seconds, print a new random quote
+ */
+setInterval(printQuote, 20000);
+
+
+/**
+ * Every 20 seconds, change the background to a new random colour
+ */
+setInterval(changeBackgroundColour, 20000);
