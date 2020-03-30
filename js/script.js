@@ -5,7 +5,6 @@ Michael Cook
 I am aiming for "Exceeds Expectations" but if the code doesn't meet that standard then I will accept "Meets Expectations"
 */
 
-
 // Array of quote objects 
 const quotes = [
   {
@@ -61,6 +60,22 @@ const quotes = [
 ];
 
 
+/**
+ * Every 20 seconds, print a new random quote and change background colour
+ * the 'var' keyword is used so that the interval id value is available inside functions 
+ */
+var intervalId = setInterval(printQuote, 20000);
+
+
+/**
+ * This function is used to reset the setInterval that automatically changes the quote and background colour 
+ * Resetting is needed so that when a user manually changes the quote it will still last on the screen for 20 seconds
+ */
+function resetTimer() {
+  clearInterval(intervalId);
+  intervalId = setInterval(printQuote, 20000);
+}
+
 
 /**
  * Generates a random whole number between 0 and the total number of quotes in the array of quotes 
@@ -89,7 +104,7 @@ function printQuote() {
   changeBackgroundColour();
 
   const quote = getRandomQuote();
-  let html = `<p class='quote'>" ${quote.quote} </p> <p class='source'> ${quote.source}`;
+  let html = `<p class='quote'>" ${quote.quote} </p> <p class='source'>${quote.source}`;
   if (quote.citation) {
     html += `<span class='citation'>" ${quote.citation}</span>`;
   }
@@ -97,12 +112,14 @@ function printQuote() {
     html += `<span class='year'>${quote.year}</span>`;
   }
   if (quote.tag) {
-    html += ` <span> tag: ${quote.tag}</span>`;
+    html += ` <span>tag: ${quote.tag}</span>`;
   }
   html += "</p>";
   document.getElementById('quote-box').innerHTML = html;
-}
 
+  // reset the timer so that a quote will always display for 20 seconds
+  resetTimer();
+}
 
 
 /***
@@ -111,9 +128,3 @@ function printQuote() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
-
-
-/**
- * Every 20 seconds, print a new random quote and change background colour
- */
-setInterval(printQuote, 20000);
