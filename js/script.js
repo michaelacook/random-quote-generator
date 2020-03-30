@@ -114,12 +114,6 @@ document.getElementById('load-quote').addEventListener("click", printQuote, fals
 
 
 /**
- * Every 20 seconds, print a new random quote
+ * Every 20 seconds, print a new random quote and change background colour
  */
 setInterval(printQuote, 20000);
-
-
-/**
- * Every 20 seconds, change the background to a new random colour
- */
-setInterval(changeBackgroundColour, 20000);
