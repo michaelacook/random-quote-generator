@@ -87,17 +87,17 @@ function changeBackgroundColour() {
 function printQuote() {
   // change background colour when quote is printed
   changeBackgroundColour();
-  
+
   const quote = getRandomQuote();
-  let html = "<p class='quote'>" + quote.quote + "</p>" + "<p class='source'>" + quote.source;
+  let html = `<p class='quote'>" ${quote.quote} </p> <p class='source'> ${quote.source}`;
   if (quote.citation) {
-    html += "<span class='citation'>" + quote.citation + "</span>";
+    html += `<span class='citation'>" ${quote.citation}</span>`;
   }
   if (quote.year) {
-    html += "<span class='year'>" + quote.year + "</span>";
+    html += `<span class='year'>${quote.year}</span>`;
   }
   if (quote.tag) {
-    html += " <span> Tag: " + quote.tag + "</span>";
+    html += ` <span> tag: ${quote.tag}</span>`;
   }
   html += "</p>";
   document.getElementById('quote-box').innerHTML = html;
