@@ -85,6 +85,9 @@ function changeBackgroundColour() {
  * Calls the getRandomQuote function, generates the html to display the quote and prints it to the page
  */
 function printQuote() {
+  // change background colour when quote is printed
+  changeBackgroundColour();
+  
   const quote = getRandomQuote();
   let html = "<p class='quote'>" + quote.quote + "</p>" + "<p class='source'>" + quote.source;
   if (quote.citation) {
@@ -108,7 +111,6 @@ function printQuote() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
-document.getElementById('load-quote').addEventListener("click", changeBackgroundColour, false);
 
 
 /**
